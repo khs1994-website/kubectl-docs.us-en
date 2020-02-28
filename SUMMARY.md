@@ -33,6 +33,9 @@
     * [Proxying Traffic To Services](pages/container_debugging/proxying_traffic_to_services.md)
   - Examples
     * [Kustomize](pages/examples/kustomize.md)
+  - Extending Kubectl
+    * [Discovering Plugins](pages/extending_kubectl/discovering_plugins.md)
+    * [Plugin Mechanism](pages/extending_kubectl/plugin_mechanism.md)
   - Imperative Porcelain
     * [Creating Resources](pages/imperative_porcelain/creating_resources.md)
     * [Editing Workloads](pages/imperative_porcelain/editing_workloads.md)
