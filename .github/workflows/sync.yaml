@@ -17,8 +17,11 @@ jobs:
         with:
           fetch-depth: 2
       - name: Fetch upstream
+        id: upstream
         run: |
           git clone --depth=1 ${GIT_URL} kubectl
+          UPSTREAM_COMMIT_SHA=`git -C kubectl log --abbrev-commit --pretty="%h" -1`
+          echo "::set-output name=UPSTREAM_COMMIT_SHA::${UPSTREAM_COMMIT_SHA}"
         env:
           GIT_URL: https://github.com/kubernetes/kubectl
       - name: Generate SUMMARY
@@ -45,6 +48,6 @@ jobs:
           PCIT_GIT_URL: github.com/${{ github.repository }}
           PCIT_KEEP_HISTORY: "true"
           PCIT_LOCAL_DIR: kubectl/docs/book
-          PCIT_MESSAGE: Sync from kubernetes/kubectl by PCIT ${{ github.sha }}
+          PCIT_MESSAGE: Sync from kubernetes/kubectl@${{ steps.upstream.outputs.UPSTREAM_COMMIT_SHA }} by PCIT
           PCIT_TARGET_BRANCH: master
           PCIT_USERNAME: khs1994
